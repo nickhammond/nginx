@@ -19,6 +19,7 @@
 # limitations under the License.
 #
 
+default[:nginx][:compile]                          = true
 default[:nginx][:source][:prefix]                  = nil
 default[:nginx][:source][:conf_path]               = nil
 default[:nginx][:source][:default_configure_flags] = nil
