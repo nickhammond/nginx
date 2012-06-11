@@ -76,9 +76,6 @@ end
 configure_flags = node.run_state[:nginx_configure_flags]
 nginx_force_recompile = node.run_state[:nginx_force_recompile]
 
-Chef::Log.info("AUTO CONFIG #{node.automatic_attrs[:nginx][:configure_arguments].sort}")
-Chef::Log.info("CONFIG FLAGS #{configure_flags.sort}")
-
 bash "compile_nginx_source" do
   cwd ::File.dirname(src_filepath)
   code <<-EOH
