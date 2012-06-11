@@ -42,5 +42,3 @@ template "#{node[:nginx][:dir]}/sites-available/default" do
   group "root"
   mode 0644
 end
-
-nginx_site 'default'
