@@ -94,7 +94,17 @@ end
 node.run_state.delete(:nginx_configure_flags)
 node.run_state.delete(:nginx_force_recompile)
 
-include_recipe 'nginx::commons'
+directory node[:nginx][:dir] do
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
+directory node[:nginx][:log_dir] do
+  mode 0755
+  owner node[:nginx][:user]
+  action :create
+end
 
 case node[:nginx][:init_style]
 when "runit"
@@ -160,6 +170,8 @@ else
     action :enable
   end
 end
+
+include_recipe 'nginx::commons'
 
 %w{nxensite nxdissite}.each do |nxscript|
   template "/usr/sbin/#{nxscript}" do

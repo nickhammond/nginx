@@ -1,15 +1,3 @@
-directory node[:nginx][:dir] do
-  owner "root"
-  group "root"
-  mode "0755"
-end
-
-directory node[:nginx][:log_dir] do
-  mode 0755
-  owner node[:nginx][:user]
-  action :create
-end
-
 %w(sites-available sites-enabled conf.d).each do |leaf|
   directory File.join(node[:nginx][:dir], leaf) do
     owner "root"
