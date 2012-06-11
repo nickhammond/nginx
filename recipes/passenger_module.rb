@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nginx
-# Recipe:: Passenger 
+# Recipe:: passenger_module 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+node.default[:nginx][:passenger][:version] = "3.0.12" 
+node.default[:nginx][:passenger][:root] = "/usr/lib/ruby/gems/1.8/gems/passenger-#{node[:nginx][:passenger][:version]}" 
+node.default[:nginx][:passenger][:ruby] = %x{which ruby}.chomp
+node.default[:nginx][:passenger][:max_pool_size] = 6
 
 package 'libcurl4-openssl-dev'
 
