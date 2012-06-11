@@ -24,6 +24,7 @@ default[:nginx][:source][:conf_path]               = nil
 default[:nginx][:source][:default_configure_flags] = nil
 default[:nginx][:configure_flags]  = Array.new
 default[:nginx][:source][:url]     = nil
+default[:nginx][:source][:compile] = true
 default[:nginx][:source][:modules] = [
   "http_ssl_module",
   "http_gzip_static_module"
