@@ -94,6 +94,8 @@ end
 node.run_state.delete(:nginx_configure_flags)
 node.run_state.delete(:nginx_force_recompile)
 
+include_recipe 'nginx::commons'
+
 case node[:nginx][:init_style]
 when "runit"
   node.set[:nginx][:src_binary] = node[:nginx][:binary]
@@ -167,8 +169,6 @@ end
     group "root"
   end
 end
-
-include_recipe 'nginx::commons'
 
 cookbook_file "#{node[:nginx][:dir]}/mime.types" do
   source "mime.types"
