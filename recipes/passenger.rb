@@ -26,10 +26,6 @@ gem_package 'passenger' do
   version node[:nginx][:passenger][:version]
 end
 
-service "nginx" do
-  supports :status => true, :restart => true, :reload => true
-end
-
 template "#{node[:nginx][:dir]}/conf.d/passenger.conf" do
   source "modules/passenger.conf.erb"
   owner "root"
@@ -40,7 +36,6 @@ template "#{node[:nginx][:dir]}/conf.d/passenger.conf" do
     :passenger_ruby => node[:nginx][:passenger][:ruby],
     :passenger_max_pool_size => node[:nginx][:passenger][:max_pool_size]
   )
-  notifies :reload, resources(:service => "nginx")
 end
 
 node.run_state[:nginx_configure_flags] =
