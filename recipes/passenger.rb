@@ -26,6 +26,12 @@ gem_package 'passenger' do
   version node[:nginx][:passenger][:version]
 end
 
+directory "#{node[:nginx][:dir]}/conf.d" do
+  owner "root"
+  group "root"
+  mode "0755"
+end
+
 template "#{node[:nginx][:dir]}/conf.d/passenger.conf" do
   source "modules/passenger.conf.erb"
   owner "root"
